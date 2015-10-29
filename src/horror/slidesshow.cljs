@@ -41,7 +41,7 @@
                      updater   (fn [] (om/transact! this '[(slideshow/next-image)]))
                      item      (:item slideshow)
                      imgref    (str "images/" (nth   (:images slideshow) item))
-                     time      (if (= item 0) (int (* 15000 (.random js/Math))) 1000)]
+                     time      (if (even? item) (int (* 15000 (.random js/Math))) 1000)]
                     (js/setTimeout updater time)
                     (dom/div #js {:className "s-app-container"}
                             (dom/img #js {:className "myfull" :src imgref } )))))
